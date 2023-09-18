@@ -39,7 +39,7 @@ if __name__ == '__main__':
     images, labels = next(dataiter) # Get images and labels from dataiter
 
     # show images
-    imshow(torchvision.utils.make_grid(images))
+    # imshow(torchvision.utils.make_grid(images))
     # print labels
     print(' '.join(f'{classes[labels[j]]:5s}' for j in range(batch_size)))
 
