@@ -7,13 +7,7 @@ import torch.optim as optim
 import torch.nn as nn
 
 from model import Net
-
-# functions to show an image
-def imshow(img):
-    img = img / 2 + 0.5     # unnormalize
-    npimg = img.numpy()
-    plt.imshow(np.transpose(npimg, (1, 2, 0)))
-    plt.show()
+from function import imshow
 
 if __name__ == '__main__':
     PATH = './ckpt/checkpoint.pth'
