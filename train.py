@@ -16,11 +16,13 @@ def imshow(img):
     plt.show()
 
 if __name__ == '__main__':
+    PATH = './ckpt/checkpoint.pth'
+
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
     transform = transforms.Compose(
-        [transforms.ToTensor(),
-         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        [transforms.ToTensor(), # Transform to Tensor
+         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]) # Normalize for each channel
 
     batch_size = 4
 
@@ -33,8 +35,8 @@ if __name__ == '__main__':
                'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
     # get some random training images
-    dataiter = iter(trainloader)
-    images, labels = next(dataiter)
+    dataiter = iter(trainloader) # dataloader
+    images, labels = next(dataiter) # Get images and labels from dataiter
 
     # show images
     imshow(torchvision.utils.make_grid(images))
@@ -43,13 +45,13 @@ if __name__ == '__main__':
 
     net = Net()
     net.to(device)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    criterion = nn.CrossEntropyLoss() # Set the loss func
+    optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9) # Set the optimizer
 
     for epoch in range(100):  # loop over the dataset multiple times
 
         running_loss = 0.0
-        for i, data in enumerate(trainloader, 0):
+        for i, data in enumerate(trainloader, 0): # i : index ,  data : img and label
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data[0].to(device), data[1].to(device)
 
@@ -67,6 +69,5 @@ if __name__ == '__main__':
             if i % 2000 == 1999:  # print every 2000 mini-batches
                 print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
                 running_loss = 0.0
-        PATH = './ckpt/checkpoint.pth'
-        torch.save(net.state_dict(), PATH)
+        torch.save(net.state_dict(), PATH) # Save the parameter at the path
     print('Finished Training')

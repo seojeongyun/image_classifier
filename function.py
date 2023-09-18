@@ -9,3 +9,9 @@ def imshow(img):
     npimg = img.numpy()
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
+
+if __name__ == '__main__':
+    img = plt.imread('/home/jysuh/PycharmProjects/yolov5/data/images/IMG_2473.JPG')
+    npimg = img.numpy()
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
+    plt.show()

@@ -7,10 +7,13 @@ from model import Net
 
 if __name__ == '__main__':
     batch_size = 4
+
     transform = transforms.Compose(
         [transforms.ToTensor(),
          transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-    PATH = './ckpt/checkpoint.pth'
+
+    PATH = './ckpt/checkpoint.pth' # path of checkpoint
+
     classes = ('plane', 'car', 'bird', 'cat',
                'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
